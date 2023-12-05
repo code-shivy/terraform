@@ -1,9 +1,9 @@
 locals {
-    vpc_id = "vpc-e8ea1483"
-    subnet_id = "subnet-0f2ce71c3a504556c"
+    vpc_id = "vpc-e8ea1483"                                            ## Replace with your VPCID
+    subnet_id = "subnet-0f2ce71c3a50455c6"                             ## Replace with your SubnetID
     ssh_user = "ubuntu"
-    key_name = "qwa-frontend-ohio"
-    private_key_path = "/Users/shubhamsingh/Downloads/qwa-frontend-ohio.pem"
+    key_name = "devops"                                                ## Replace with your Key name
+    private_key_path = "/Users/shubhamsingh/Downloads/devops.pem"      ## Replace with your Private Key Path    
 }
 
 provider "aws" {
@@ -37,9 +37,9 @@ resource "aws_security_group" "nginx" {
 }
 
 resource "aws_instance" "nginx" {
-  ami                         = "ami-0835852ec6b67abab"
-  subnet_id                   = "subnet-0f2ce71c3a504556c"
-  instance_type               = "t2.micro"
+  ami                         = "ami-0835852ec6b67abba"                ## Replace with your AMI
+  subnet_id                   = "subnet-0f2ce71c3a50455c6"             ## Replace with your Subnet
+  instance_type               = "t2.micro"                             ## Replace with your Instance Type
   associate_public_ip_address = true
   security_groups             = [aws_security_group.nginx.id]
   key_name                    = local.key_name
